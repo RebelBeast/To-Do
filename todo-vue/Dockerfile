@@ -1,6 +1,6 @@
 FROM node:18-alpine
 # install vue cli
-RUN npm install -g @vue/cli
+RUN npm install @vue/cli
 # copy vue app
 COPY . /app
 WORKDIR /app
