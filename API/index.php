@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
     $res ->respond();
 }
 
-$host = '127.0.0.1';
+$host = 'host.docker.internal';
 $user = 'root';
 $pass = '';
 $db = 'todo';
