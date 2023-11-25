@@ -1,8 +1,8 @@
 <template>
     <div>
         <input type="text" class="todo-input" placeholder="Was muss erledigt werden" v-model="newTodo" @keyup.enter="addTodo">
-        <div v-for="(todo, index) in todosFiltered" :key="todo.id" class="todo-item">
-            <div class="todo-item-left">
+        <todo-item v-for="(todo, index) in todosFiltered" :key="todo.id">
+            <!--div class="todo-item-left">
                 <input type="checkbox" v-model="todo.completed">
                 <div v-if="!todo.editing" @dblclick="editTodo(todo)" class="todo-item-label" :class="{ completed : todo.completed }">
                     {{ todo.title }}
@@ -11,8 +11,8 @@
             </div>
             <div class="remove-item" @click="removeTodo(index)">
                 &times;
-            </div>
-        </div>
+            </div> -->
+        </todo-item>
         <div class="extra-container">
             <div><label><input type="checkbox" :checked="!anyRemaining" @change="checkAlltodos"> Alle Abschließen </label></div>
             <div>{{ remaining }} Aufgaben offen</div>
@@ -31,8 +31,13 @@
   </template>
   
   <script>
+  import TodoItem from './TodoItem'
+
   export default {
     name: 'todo-list',
+    components: {
+    TodoItem,
+  },
     data () {
       return {
         newTodo: '',
