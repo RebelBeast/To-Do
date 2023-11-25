@@ -1,11 +1,11 @@
 <template>
     <div>
         <input type="text" class="todo-input" placeholder="Was muss erledigt werden" v-model="newTodo" @keyup.enter="addTodo">
-        <div v-for="todo in todos" :key="todo.id" class="todo-item">
+        <div v-for="(todo, index) in todos" :key="todo.id" class="todo-item">
             <div>
                 {{ todo.title }}
             </div>
-            <div class="remove-item">
+            <div class="remove-item" @click="removeTodo(index)">
                 &times;
             </div>
         </div>
@@ -48,6 +48,9 @@
 
             this.newTodo = ''
             this.idForTodo++
+        },
+        removeTodo(index) {
+            this.todos.splice(index, 1)
         }
 
         }
@@ -56,10 +59,14 @@
   
   <style >
   .todo-input {
-    widows: 100%;
+    width: 100%;
     padding: 10px 18px;
     font-size: 18px;
     margin-bottom: 16px;
+  }
+
+  .todo-input:focus {
+    outline: 0;
   }
 
   .todo-item {
