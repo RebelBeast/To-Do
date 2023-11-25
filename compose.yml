@@ -6,10 +6,9 @@ services:
     ports:
       - "3306:3306"
     environment:
-      - MYSQL_ROOT_PASSWORD=
       - MYSQL_DATABASE=todo
       - TZ=Europe/Berlin
-      - MARIADB_ALLOW_EMPTY_ROOT_PASSWORD= 1
+      - MARIADB_ALLOW_EMPTY_ROOT_PASSWORD=1
     volumes:
       - ./layout.sql/:/docker-entrypoint-initdb.d/init.sql
   frontend:
