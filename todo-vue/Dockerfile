@@ -1,11 +1,11 @@
-FROM node:18-alpine
-# install vue cli
-RUN npm install @vue/cli
-# copy vue app
-COPY . /app
+# Stage 1: Build the Vue.js application
+FROM node:18-alpine as build-stage
 WORKDIR /app
-# install dependencies
+COPY package*.json ./
 RUN npm install
-# start server
-EXPOSE 8080
-CMD ["npm", "run", "serve"]
+COPY . .
+RUN npm run build
+
+# Stage 2: Setup Apache to serve the Vue.js application
+FROM httpd:2.4
+COPY --from=build-stage /app/dist/ /usr/local/apache2/htdocs/

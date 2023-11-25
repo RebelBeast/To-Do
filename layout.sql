@@ -43,8 +43,8 @@ CREATE TABLE IF NOT EXISTS `todos` (
 --
 
 INSERT INTO `todos` (`id`, `title`, `completed`, `created_at`, `updated_at`) VALUES
-(2, 'Benis', 0, '2023-11-25 16:08:07', NULL),
-(5, 'dwa', 0, '2023-11-25 17:31:12', '2023-11-25 17:46:13');
+(2, 'test', 0, '2023-11-25 16:08:07', NULL),
+(5, 'test1', 0, '2023-11-25 17:31:12', '2023-11-25 17:46:13');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

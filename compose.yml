@@ -15,7 +15,7 @@ services:
     build: ./todo-vue/
     container_name: todoapp.docker
     ports:
-      - "8080:8080"
+      - "8080:80"
   api:
     container_name: todoapp-api.docker
     build: ./API/
