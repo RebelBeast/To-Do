@@ -1,17 +1,7 @@
 <template>
     <div>
         <input type="text" class="todo-input" placeholder="Was muss erledigt werden" v-model="newTodo" @keyup.enter="addTodo">
-        <todo-item v-for="(todo, index) in todosFiltered" :key="todo.id">
-            <!--div class="todo-item-left">
-                <input type="checkbox" v-model="todo.completed">
-                <div v-if="!todo.editing" @dblclick="editTodo(todo)" class="todo-item-label" :class="{ completed : todo.completed }">
-                    {{ todo.title }}
-                </div>
-                <input v-else class="todo-item-edit" type="text" v-model="todo.title" @blur="doneEdit(todo)" @keyup.enter="doneEdit(todo)" @keyup.esc="cancelEdit(todo)" v-focus>
-            </div>
-            <div class="remove-item" @click="removeTodo(index)">
-                &times;
-            </div> -->
+        <todo-item v-for="(todo, index) in todosFiltered" :key="todo.id" :todo="todo" :index="index" :checkAll="!anyRemaining" @removedTodo="removeTodo" @finishedEdit="finishedEdit">
         </todo-item>
         <div class="extra-container">
             <div><label><input type="checkbox" :checked="!anyRemaining" @change="checkAlltodos"> Alle Abschließen </label></div>
@@ -81,13 +71,6 @@
             return this.todos.filter(todo => todo.completed).length > 0
         }
     },
-    directives: {
-        focus: {
-            inserted: function (el) {
-                el.focus()
-            }
-        }
-    },
     methods: {
         addTodo() {
             if (this.newTodo.trim() === '') {
@@ -104,23 +87,6 @@
             this.newTodo = ''
             this.idForTodo++
         },
-        editTodo(todo) {
-            this.beforeEditCache = todo.title
-            todo.editing = true
-        },
-
-        doneEdit(todo) {
-            if (todo.title.trim() === '') {
-                todo.title = this.beforeEditCache
-            }
-            todo.editing = false
-        },
-
-        cancelEdit(todo) {
-            todo.title = this.beforeEditCache
-            todo.editing =false
-        },
- 
         removeTodo(index) {
             this.todos.splice(index, 1)
         },
@@ -129,7 +95,10 @@
         },
         clearCompleted() {
             this.todos = this.todos.filter(todo => !todo.completed)
-        }
+        },
+        finishedEdit(data) {
+          this.todos.splice(data.index, 1, data.todo)
+        } 
 
         }
     }
