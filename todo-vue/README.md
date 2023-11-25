@@ -1,6 +1,6 @@
-# todo
+# todo-vue
 
-> A Vue.js and PHP Project
+> A Vue.js and PHP project
 
 ## Build Setup
 

@@ -1,7 +1,7 @@
 {
-  "name": "todo",
+  "name": "todo-vue",
   "version": "1.0.0",
-  "description": "A Vue.js and PHP Project",
+  "description": "A Vue.js and PHP project",
   "author": "Maurice Trunk <maurice.trunk@live.de>",
   "private": true,
   "scripts": {
