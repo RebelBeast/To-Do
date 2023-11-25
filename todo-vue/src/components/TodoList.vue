@@ -1,7 +1,7 @@
 <template>
     <div>
         <input type="text" class="todo-input" placeholder="Was muss erledigt werden" v-model="newTodo" @keyup.enter="addTodo">
-        <todo-item v-for="(todo, index) in todosFiltered" :key="todo.id" :todo="todo" :index="index" :checkAll="!anyRemaining" @removedTodo="removeTodo" @finishedEdit="finishedEdit">
+        <todo-item v-for="(todo, index) in todosFiltered" :key="todo.id" :todo="todo" :index="index" :checkAll="!anyRemaining">
         </todo-item>
         <div class="extra-container">
             <div><label><input type="checkbox" :checked="!anyRemaining" @change="checkAlltodos"> Alle Abschließen </label></div>
@@ -49,6 +49,10 @@
             },
         ]
       }
+    },
+    created() {
+      eventBus.$on('removedTodo', (index) => this.removeTodo(index))
+      eventBus.$on('finishedEdit', (data) => this.finishedEdit(data))
     },
     computed: {
         remaining() {
