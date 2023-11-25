@@ -19,11 +19,9 @@
         </div>
         <div class="extra-container">
             <div>
-                <transition name ="fade">
-                    <button :class="{ active: filter == 'all'}" @click="filter = 'all'">All</button>
-                    <button :class="{ active: filter == 'active'}" @click="filter = 'active'">Active</button>
-                    <button :class="{ active: filter == 'completed'}" @click="filter = 'completed'">Completed</button>
-                </transition>
+                <button :class="{ active: filter == 'all'}" @click="filter = 'all'">Alle</button>
+                <button :class="{ active: filter == 'active'}" @click="filter = 'active'">Offen</button>
+                <button :class="{ active: filter == 'completed'}" @click="filter = 'completed'">Abgeschlossen</button>
             </div>
             <div>
                 <button v-if="showClearCompletedButton" @click="clearCompleted">Abgeschlossene löschen</button>
@@ -217,15 +215,6 @@
   .active {
     background: lightgreen;
   }
-
-  .fade-enter-active, .fade-leave-active {
-    transition: opacity .2s;
-  }
-
-  .fade-enter, .fade-leave-to {
-    opacity: 0;
-  }
-
 
   </style>
   
