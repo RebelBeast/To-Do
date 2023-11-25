@@ -1,18 +1,22 @@
 <template>
   <div id="app" class="container">
-    <img src="./assets/logo.png">
-    <HelloWorld/>
+    <img src="./assets/logo.png" class="logo">
+    <todolist></todolist>
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld'
+import Todolist from './components/todolist.vue';
+import todolist from './components/todolist.vue';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
+    HelloWorld,
+    todolist,
+    Todolist
+}
 }
 </script>
 
