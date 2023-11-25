@@ -13,6 +13,10 @@
                 &times;
             </div>
         </div>
+        <div class="extra-container">
+            <div><label><input type="checkbox" :checked="!anyRemaining" @change="checkAlltodos"> Alle Abschließen </label></div>
+            <div>{{ remaining }} Aufgaben offen</div>
+        </div>
     </div>
   </template>
   
@@ -39,6 +43,14 @@
             },
         ]
       }
+    },
+    computed: {
+        remaining() {
+            return this.todos.filter(todo => !todo.completed).length
+        },
+        anyRemaining() {
+            return this.remaining  !== 0
+        }
     },
     directives: {
         focus: {
@@ -82,6 +94,9 @@
  
         removeTodo(index) {
             this.todos.splice(index, 1)
+        },
+        checkAlltodos() {
+            this.todos.forEach((todo) => todo.completed = event.target.checked)
         }
 
         }
@@ -144,6 +159,34 @@
   .completed {
     text-decoration: line-through;
     color: grey;
+  }
+
+  .extra-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 16px;
+    border-top: 1px solid lightgrey;
+    padding-top: 14px;
+    margin-bottom: 14px;
+  }
+
+  button {
+    font-size: 14px;
+    background-color: white;
+    appearance: none;
+  }
+
+  button:hover {
+    background: lightgreen;
+  }
+
+  button:focus {
+    outline: none;
+  }
+
+  .active {
+    background: lightgreen;
   }
 
 
