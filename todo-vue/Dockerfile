@@ -8,4 +8,4 @@ WORKDIR /app
 RUN npm install
 # start server
 EXPOSE 8080
-CMD ["npm", "run", "dev"]
+CMD ["npm", "run", "serve"]
