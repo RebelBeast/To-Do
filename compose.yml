@@ -9,11 +9,12 @@ services:
       - MYSQL_ROOT_PASSWORD=
       - MYSQL_DATABASE=todo
       - TZ=Europe/Berlin
+      - MARIADB_ALLOW_EMPTY_ROOT_PASSWORD= 1
     volumes:
       - ./layout.sql/:/docker-entrypoint-initdb.d/init.sql
   frontend:
     build: ./todo-vue/
-    container_name: frontend.docker
+    container_name: todoapp.docker
     ports:
       - "8080:8080"
   api:
